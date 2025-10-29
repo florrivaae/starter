@@ -13,6 +13,29 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
+-- Set diagnostics after VimEnter to ensure it runs after all plugins
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.diagnostic.config({
+      virtual_text = false,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    })
+  end,
+  once = true,
+})
+
+-- Show diagnostic
+vim.keymap.set('n', '<leader>df', function()
+  vim.diagnostic.open_float({
+    border = "rounded",
+    focusable = true,
+    header = "Diagnostics:",
+  })
+end, { desc = "Show line diagnostics" })
+
 -- load plugins
 require("lazy").setup({
   {
@@ -25,9 +48,24 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
+
+-- load lsp servers
+vim.lsp.enable('clangd')
+
+-- Use vim.defer_fn to ensure this runs after plugin initialization
+vim.defer_fn(function()
+  vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+  })
+end, 100)
 
 require "options"
 require "autocmds"
