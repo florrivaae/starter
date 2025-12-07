@@ -75,7 +75,7 @@ vim.defer_fn(function()
 end, 100)
 
 -- use powershell for terminals within vim
-vim.o.shell = 'powershell'
+--vim.o.shell = 'powershell'
 
 require "options"
 require "autocmds"
