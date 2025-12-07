@@ -62,6 +62,7 @@ dofile(vim.g.base46_cache .. "statusline")
 
 -- load lsp servers
 vim.lsp.enable('clangd')
+vim.lsp.enable('omnisharp')
 
 -- Use vim.defer_fn to ensure this runs after plugin initialization
 vim.defer_fn(function()
