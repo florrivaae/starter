@@ -12,6 +12,10 @@ map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Reset git hunk"
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 map("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+map("n", "<leader>fs", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "telescope find workspace symbols" })
+map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "telescope find references" })
+map("n", "<leader>fl", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "telescope find local buffer symbols" })
+
 map("n", "g<leader>d", function()
   -- Сохраняем исходное окно
   local original_win = vim.api.nvim_get_current_win()

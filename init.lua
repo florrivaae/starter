@@ -48,14 +48,6 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
--- Enable formatting on save for all LSP clients
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  callback = function(args)
-    vim.lsp.buf.format({ async = false })
-  end,
-})
-
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
