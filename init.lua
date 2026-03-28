@@ -70,6 +70,11 @@ end, 100)
 -- use powershell for terminals within vim
 vim.o.shell = 'powershell'
 
+-- Command for situations where cmp fails mid-work
+vim.api.nvim_create_user_command("CmpEnable",  function()
+  require("cmp").setup.buffer({enabled = true})
+end, {desc = "Enable nvim-cmp in the current bufer"})
+
 require "options"
 require "autocmds"
 
